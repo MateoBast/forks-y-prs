@@ -16,14 +16,22 @@ class User {
   }
   name: string;
   products: Product[] = [];
+
   addProduct(newProduct: Product) {
     this.products.push(newProduct);
   }
+
   addProducts(newProducts: Product[]) {
-    // esto no funciona:
-    this.products.push(newProducts);
-    // pista: push no suma muchos items (agrega de a uno)
+    this.products.push(...newProducts); // Agrega varios productos a la vez
+  }
+
+  static findProductsBelow(precioBase: number) {
+    return products.filter(producto => producto.price < precioBase);
   }
 }
+
+// Ejemplo de uso del método findProductsBelow
+const productosBaratos = User.findProductsBelow(250);
+console.log(productosBaratos);
 
 export { User, Product };
